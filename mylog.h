@@ -1,5 +1,5 @@
 // mylog.h
-// log with rotation based on boost log
+// log rotation with boost log
 //
 
 /*
