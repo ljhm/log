@@ -20,8 +20,8 @@ BLOG(fatal) << "A fatal severity message";
 5: 20181203 175935.575487 fatal a.cpp:133 (main) - A fatal severity message
 */
 
-#ifndef blog_h
-#define blog_h
+#ifndef mylog_h
+#define mylog_h
 
 #include <string>
 #include <boost/log/trivial.hpp>
