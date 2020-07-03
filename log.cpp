@@ -13,6 +13,7 @@ LDLIBS   = -lpthread -lboost_system -lboost_log -lboost_log_setup -lboost_thread
 
 $ vi ~/.bashrc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ljh/boost_1_73_0/stage/lib
+$
 
 */
 
