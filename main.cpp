@@ -1,6 +1,6 @@
 #include <string>
 using namespace std;
-#include "mylog.h"
+#include "log.h"
 
 int main()
 {

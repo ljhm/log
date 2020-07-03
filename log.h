@@ -1,4 +1,4 @@
-// mylog.h
+// log.h
 // log rotation with boost log
 //
 
@@ -20,8 +20,8 @@ BLOG(fatal) << "A fatal severity message";
 5: 20181203 175935.575487 fatal a.cpp:133 (main) - A fatal severity message
 */
 
-#ifndef mylog_h
-#define mylog_h
+#ifndef log_h
+#define log_h
 
 #include <string>
 #include <boost/log/trivial.hpp>
@@ -29,10 +29,10 @@ namespace src = boost::log::sources;
 namespace logging = boost::log;
 using namespace logging::trivial;
 
-extern src::severity_logger< severity_level > mylog;
+extern src::severity_logger< severity_level > log_;
 int init_log(std::string &dir, std::string &name);
 
-#define LOG(severity) BOOST_LOG_SEV(mylog, severity) \
+#define LOG(severity) BOOST_LOG_SEV(log_, severity) \
     << __FILE__ << ":" << __LINE__ << " (" << __func__ << ") - "
 
-#endif
+#endif // log_h

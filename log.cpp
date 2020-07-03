@@ -26,9 +26,9 @@ namespace sinks = boost::log::sinks;
 namespace src = boost::log::sources;
 using namespace logging::trivial;
 using boost::shared_ptr;
-#include "mylog.h"
+#include "log.h"
 
-src::severity_logger< severity_level > mylog;
+src::severity_logger< severity_level > log_;
 
 int init_log(std::string &dir, std::string &name)
 {
