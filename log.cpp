@@ -10,6 +10,10 @@ https://github.com/boostorg/log/blob/develop/example/doc/tutorial_fmt_stream_man
 CPPFLAGS = -MMD -MP -DNDEBUG -I../boost_1_73_0 -DBOOST_ALL_DYN_LINK
 LDFLAGS  = -L../boost_1_73_0/stage/lib
 LDLIBS   = -lpthread -lboost_system -lboost_log -lboost_log_setup -lboost_thread -lboost_chrono -lboost_atomic -lboost_date_time -lboost_filesystem -lboost_regex
+
+$ vi ~/.bashrc
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ljh/boost_1_73_0/stage/lib
+
 */
 
 #include <boost/log/attributes.hpp>
