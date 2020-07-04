@@ -3,12 +3,12 @@
 //
 
 /*
-BLOG(trace) << "A trace severity message";
-BLOG(debug) << "A debug severity message";
-BLOG(info) << "An informational severity message";
-BLOG(warning) << "A warning severity message";
-BLOG(error) << "An error severity message";
-BLOG(fatal) << "A fatal severity message";
+LOG(trace) << "A trace severity message";
+LOG(debug) << "A debug severity message";
+LOG(info) << "An informational severity message";
+LOG(warning) << "A warning severity message";
+LOG(error) << "An error severity message";
+LOG(fatal) << "A fatal severity message";
 */
 
 /*
