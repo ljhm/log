@@ -29,8 +29,6 @@ auto main() -> int {
 }
 */
 
-
-//
 // 2. redirection
 //
 // $ ( cd /home/ljh/src/build/main/; ./main      | tee -a foo.log )
@@ -51,10 +49,11 @@ auto main() -> int {
 //     create root root
 // }
 // $
-// $ sudo logrotate -d /etc/logrotate.d/mylogrotate.conf
-
+// $ sudo logrotate /etc/logrotate.d/mylogrotate.conf
+//
 
 // 4. systemd timer (instead of crontab)
+//
 
 // 5. systemd service (start service at reboot)
 //
