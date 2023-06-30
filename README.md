@@ -1,1 +1,1 @@
-log rotation with boost log
+logging with boost.log, googlg c++ glog
