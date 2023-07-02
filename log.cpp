@@ -21,6 +21,9 @@
 #include <boost/log/sinks/text_ostream_backend.hpp>
 #include <boost/core/null_deleter.hpp>
 
+#include <iomanip>
+#include <boost/format.hpp>
+
 #include "log.h"
 
 namespace logging = boost::log;
@@ -36,9 +39,18 @@ using boost::shared_ptr;
 
 void boost_log_init(const std::string log_dir, const std::string name) {
 
-    auto format = expr::format("%1%: %2%")
-            % expr::attr< boost::posix_time::ptime >("TimeStamp")
-            % expr::smessage;
+    // auto format = expr::format("%1%: %2%")
+    //     % expr::attr< boost::posix_time::ptime >("TimeStamp")
+    //     % expr::smessage;
+
+    auto format = expr::stream
+        << expr::attr<boost::posix_time::ptime>("TimeStamp")
+        << " [" << std::left << std::setw(7) << std::setfill(' ') << logging::trivial::severity << "] "
+        << expr::smessage;
+
+    // auto *facet = new boost::posix_time::time_facet("%Y%m%d %H%M%S"); //
+    // std::locale::global(std::locale(std::locale(), facet)); //
+
 
     // Create a text file sink
     typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;
@@ -75,5 +87,4 @@ void boost_log_init(const std::string log_dir, const std::string name) {
 
     // Add some attributes too
     logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
-
 }
