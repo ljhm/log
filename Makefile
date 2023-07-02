@@ -1,37 +1,38 @@
-# Generic Makefile
-#
-# 1. Prerequisites on header files generated
-# 2. Out of source tree build
-# 3. Source files in folders with Makefile or below
+# Makefile for subdir
 
-OUT      = a.out
-DIR      = ./.build
-SRC      = $(shell find . -type f -name "*.cpp")
-OBJ      = $(addprefix $(DIR)/,$(SRC:.cpp=.o))
-DEP      = $(OBJ:.o=.d)
+# build shared library with -fPIC, -shared
+CXXFLAGS    = -std=c++23 # -g -O3 -fPIC # CXXFLAGS for .cpp
+CPPFLAGS  = -MMD -MP  -fexec-charset=GBK  -I../foo   -I/home/ljh/Downloads/boost_1_82_0/ -DBOOST_ALL_DYN_LINK -DBOOST_MP_THROW_ET_EXCEPTIONS
+LDFLAGS   = -L$(OBJDIR)/foo -L/home/ljh/Downloads/boost_1_82_0/stage/lib # -shared
+LDLIBS    = -lglog -lfoo -lpthread -lboost_system -lboost_log -lboost_log_setup -lboost_thread -lboost_chrono -lboost_atomic -lboost_date_time -lboost_filesystem -lboost_regex
+CC       = $(CXX) # link with CXX for .cpp
 
-CXXFLAGS = -std=c++11 -Wall -W -pedantic -g # -O3
-CPPFLAGS = -MMD -MP -DNDEBUG -I../boost_1_73_0 -DBOOST_ALL_DYN_LINK
-LDFLAGS  = -L../boost_1_73_0/stage/lib
-LDLIBS   = -lpthread -lboost_system -lboost_log -lboost_log_setup -lboost_thread -lboost_chrono -lboost_atomic -lboost_date_time -lboost_filesystem -lboost_regex
+LDFLAGS  += -Wl,-rpath,'$$ORIGIN/../foo'
+LDFLAGS  += -Wl,-rpath,'$$ORIGIN/../lib'
+# LDFLAGS += -Wl,-soname,$(soname)
 
-# build shared library
-#OUT       = ../lib/libhello.so
-#CXXFLAGS += -fPIC
-#LDFLAGS  += -shared
+# make # NDEBUG=1
+ifdef NDEBUG
+CXXFLAGS   += -O3 # .cpp
+CPPFLAGS += -DNDEBUG
+else
+CXXFLAGS   += -g # .cpp
+LDFLAGS  += -fsanitize=address
+endif
 
+SUBDIR    = $(OBJDIR)/$(lastword $(subst /, ,$(CURDIR)))
+
+all : $(SUBDIR)/main # $(SUBDIR)/foo
+
+# https://make.mad-scientist.net/papers/how-not-to-use-vpath/
+$(SUBDIR)/main : $(addprefix $(SUBDIR)/,$(patsubst %.cpp,%.o,$(wildcard *.cpp))) # .cpp
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+$(SUBDIR)/%.o : %.cpp | $(SUBDIR) # .cpp
+	$(CC) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+$(SUBDIR) : ; @ mkdir $@
+
+-include $(SUBDIR)/*.d
+clean : ; -rm -fr $(SUBDIR)
 .PHONY : all clean
-
-all : $(OUT)
-
-$(OUT) : $(OBJ)
-	$(CXX) $(LDFLAGS) $(LDLIBS) $^ -o $@
-
-$(DIR)/%.o : %.cpp
-	mkdir -p $(dir $@)
-	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
-
--include $(DEP)
-
-clean :
-	rm -fr $(OUT) $(DIR)

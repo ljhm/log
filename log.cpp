@@ -1,83 +1,79 @@
-/*
-http://www.boost.org/doc/libs/1_56_0/libs/log/example/doc/tutorial_file.cpp
-http://lists.boost.org/boost-users/att-79396/test_logging.cpp
-https://github.com/boostorg/log/blob/develop/example/advanced_usage/main.cpp
-https://github.com/boostorg/log/blob/develop/example/rotating_file/main.cpp
-https://github.com/boostorg/log/blob/develop/example/doc/tutorial_fmt_stream_manual.cpp
-*/
+// ../boost_1_82_0/libs/log/example/rotating_file/main.cpp
 
-/*
-CPPFLAGS = -MMD -MP -DNDEBUG -I../boost_1_73_0 -DBOOST_ALL_DYN_LINK
-LDFLAGS  = -L../boost_1_73_0/stage/lib
-LDLIBS   = -lpthread -lboost_system -lboost_log -lboost_log_setup -lboost_thread -lboost_chrono -lboost_atomic -lboost_date_time -lboost_filesystem -lboost_regex
+// $ export LD_LIBRARY_PATH=/home/ljh/Downloads/boost_1_82_0/stage/lib
 
-$ vi ~/.bashrc
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ljh/boost_1_73_0/stage/lib
-$
+// #define BOOST_LOG_DYN_LINK 1
 
-*/
+#include <stdexcept>
+#include <string>
+#include <iostream>
+#include <memory>
+#include <boost/smart_ptr/shared_ptr.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
-#include <boost/log/attributes.hpp>
+#include <boost/log/common.hpp>
 #include <boost/log/expressions.hpp>
+#include <boost/log/attributes.hpp>
+#include <boost/log/sources/logger.hpp>
 #include <boost/log/sinks/sync_frontend.hpp>
 #include <boost/log/sinks/text_file_backend.hpp>
-#include <boost/log/support/date_time.hpp>
-#include <boost/log/trivial.hpp>
-namespace attrs = boost::log::attributes;
-namespace expr = boost::log::expressions;
-namespace keywords = boost::log::keywords;
-namespace logging = boost::log;
-namespace sinks = boost::log::sinks;
-namespace src = boost::log::sources;
-using namespace logging::trivial;
-using boost::shared_ptr;
+#include <boost/log/sinks/text_ostream_backend.hpp>
+#include <boost/core/null_deleter.hpp>
+
 #include "log.h"
 
-src::severity_logger< severity_level > log_;
+namespace logging = boost::log;
+namespace attrs = boost::log::attributes;
+// namespace src = boost::log::sources;
+namespace sinks = boost::log::sinks;
+namespace expr = boost::log::expressions;
+namespace keywords = boost::log::keywords;
 
-int init_log(std::string &dir, std::string &name)
-{
-    try
-    {
-        // Create a text file sink
-        typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;
-        shared_ptr< file_sink > sink(new file_sink(
-            keywords::file_name = dir + "/" + name + "_%Y%m%d_%H%M%S_%5N.log", // file name pattern
-            keywords::auto_flush = true,
-            keywords::time_based_rotation = sinks::file::rotation_at_time_point(0, 0, 0), //at midnight
-            keywords::rotation_size = 16 * 1024                     // rotation size, in characters
-            ));
+using boost::shared_ptr;
 
-        // Set up where the rotated files will be stored
-        sink->locked_backend()->set_file_collector(sinks::file::make_collector(
-            keywords::target = dir //,                             // where to store rotated files
-            //keywords::max_size = 16 * 1024 * 1024,              // maximum total size of the stored files, in bytes
-            //keywords::min_free_space = 100 * 1024 * 1024,       // minimum free space on the drive, in bytes
-            //keywords::max_files = 512                           // maximum number of stored files
-            ));
+// enum { LOG_RECORDS_TO_WRITE = 10000 };
 
-        // Upon restart, scan the target directory for files matching the file_name pattern
-        sink->locked_backend()->scan_for_files();
+void boost_log_init(const std::string log_dir, const std::string name) {
 
-        sink->set_formatter(expr::format("%1%: %2% %3% %4%")
-            % expr::attr< unsigned int >("RecordID")
-            % expr::format_date_time< boost::posix_time::ptime >("TimeStamp", "%Y%m%d %H%M%S.%f")
-            % logging::trivial::severity
-            % expr::smessage
-            );
+    auto format = expr::format("%1%: %2%")
+            % expr::attr< boost::posix_time::ptime >("TimeStamp")
+            % expr::smessage;
 
-        // Add it to the core
-        logging::core::get()->add_sink(sink);
+    // Create a text file sink
+    typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;
+    auto pattern = "_%Y%m%d_%H%M%S_%5N.log";
+    shared_ptr< file_sink > sink(new file_sink(
+        keywords::file_name = log_dir + "/" + name + pattern,   // file name pattern
+        keywords::target_file_name = name + pattern,            // file name pattern
+        keywords::rotation_size = 30 * 1024                     // rotation size, in characters
+        ));
 
-        // Add some attributes too
-        logging::core::get()->add_global_attribute("RecordID", attrs::counter< unsigned int >());
-        logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
+    // Set up where the rotated files will be stored
+    sink->locked_backend()->set_file_collector(sinks::file::make_collector(
+        keywords::target = log_dir,                             // where to store rotated files
+        keywords::max_size = 16 * 1024 * 1024,                  // maximum total size of the stored files, in bytes
+        keywords::min_free_space = 100 * 1024 * 1024,           // minimum free space on the drive, in bytes
+        keywords::max_files = 7                                 // maximum number of stored files
+        ));
 
-        return 0;
-    }
-    catch (std::exception& e)
-    {
-        std::cout << "exception: " << e.what() << std::endl;
-        return 1;
-    }
+    // Upon restart, scan the target directory for files matching the file_name pattern
+    sink->locked_backend()->scan_for_files();
+    sink->set_formatter(format);
+
+    // Add it to the core
+    logging::core::get()->add_sink(sink);
+
+    // Add a console sink
+    typedef sinks::synchronous_sink< sinks::text_ostream_backend > console_sink;
+    shared_ptr< console_sink > consoleSink(new console_sink());
+    consoleSink->locked_backend()->add_stream(boost::shared_ptr<std::ostream>(&std::clog, boost::null_deleter()));
+    consoleSink->set_formatter(format);
+
+    consoleSink->set_filter(logging::trivial::severity >= logging::trivial::trace);
+    logging::core::get()->add_sink(consoleSink);
+
+    // Add some attributes too
+    logging::core::get()->add_global_attribute("TimeStamp", attrs::local_clock());
+
 }
