@@ -3,10 +3,10 @@
 
 auto main() -> int {
 
-  FLAGS_alsologtostderr = true;
+  FLAGS_alsologtostderr = true; // all to stderr, default: ERROR
   FLAGS_colorlogtostderr = true;
-  FLAGS_log_dir = "./logs"; // default: /tmp
-  FLAGS_max_log_size = 5;   // in MB
+  FLAGS_log_dir = "./logs";     // default: /tmp
+  FLAGS_max_log_size = 5;       // in MB
   FLAGS_stop_logging_if_full_disk = true;
   google::InitGoogleLogging("hello");
 
