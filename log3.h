@@ -4,30 +4,51 @@
 
 // 1. print log
 
-#define LOG(fmt, ...) \
-do { \
-  char str[26]; \
-  time_t now = time(NULL); \
-  strftime(str, sizeof(str), "%Y-%m-%d %H:%M:%S %z", \
-    localtime(&now)); \
-  fprintf(stdout, "%s  %s:%d]  " fmt "\n", \
-    str, __FILE__, __LINE__, ##__VA_ARGS__); \
+// ---
+
+// log with printf, va args,
+
+// ##__VA_ARGS__ is used to handle cases where __VA_ARGS__ might be empty.
+// It ensures that if there are no arguments passed after fmt,
+// the comma before __VA_ARGS__ is removed during macro expansion.
+
+
+// LOG1,
+// ##__VA_ARGS__ , is gnu extension
+
+// LOG1("%s", ""); // print empty string
+// LOG1(); // ok,
+
+#define LOG1(fmt, ...) do { \
+    fprintf(stdout, "%s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__); \
 } while (0)
 
-/*
-auto main() -> int {
 
-  for(;;){
-    LOG("stdout %d %f", 123, 3.14);
-    LOG("hello");
-    LOG("");
-    LOG();
-  }
+// LOG2,
+// __VA_ARGS__ , without ##, is more portable
 
-  return 0;
+// LOG2("%s", ""); // always with arguments, print empty string
+// LOG2(); // no,
 
+#define LOG2(fmt, ...) do { \
+    fprintf(stdout, "%s:%d: " fmt "\n", __FILE__, __LINE__, __VA_ARGS__); \
+} while (0)
+
+int main() {
+    LOG1("%s, %f", "abc", 3.14);
+    LOG1("%s", ""); // print empty string
+    LOG1(); // ok,
+
+    LOG2("%s, %f", "abc", 3.14);
+    LOG2("%s", ""); // always with arguments, print empty string
+    // LOG2(); // no, because no ## before __VA_ARGS__ in LOG2, but this is more portable
+
+    return 0;
 }
-*/
+
+
+// ---
+
 
 // 2. redirection
 //
