@@ -1,1 +1,1 @@
-logging with boost.log, googlg c++ glog
+logging with boost.log, google c++ glog
