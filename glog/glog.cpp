@@ -66,21 +66,21 @@ Error:
 
 #include <glog/logging.h>
 
-auto main() -> int {
+int main() {
 
   // FLAGS_alsologtostderr = true; // all levels to stderr, default: ERROR
   FLAGS_colorlogtostderr = true;
   // FLAGS_log_dir = "./log"; // default: /tmp
-  FLAGS_max_log_size = 5; // in MB
+  FLAGS_max_log_size = 5; // in MB, for test
   FLAGS_stop_logging_if_full_disk = true;
   google::InitGoogleLogging("glog");
 
-  for (;;) {
-    LOG(INFO) << "INFO!";
-    LOG(WARNING) << "WARNING!";
-    LOG(ERROR) << "ERROR!";
-    // LOG(FATAL) << "FATAL!"; // it will exit
-  }
+  // for (;;) {
+  LOG(INFO) << "INFO!";
+  LOG(WARNING) << "WARNING!";
+  LOG(ERROR) << "ERROR!";
+  // LOG(FATAL) << "FATAL!"; // it will exit
+  // }
 
   return 0;
 }

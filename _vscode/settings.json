@@ -13,6 +13,13 @@
     // "C_Cpp.formatting": "clangFormat",
     "C_Cpp.formatting": "none",
     "clangd.arguments": [
+        // clang-tidy static checking requires compile_commands.json anyway,
+        // it is cumbersome.
+        "--clang-tidy",
+        // https://clang.llvm.org/extra/clang-tidy/checks/list.html ,
+        // https://clang.llvm.org/extra/clang-tidy ,
+        // ` $ clang-tidy main.cpp -checks=cppcoreguidelines-* `
+        "--clang-tidy-checks=cppcoreguidelines-*",
         // "--fallback-style=None",
         "--header-insertion=never",
     ],
