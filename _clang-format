@@ -1,4 +1,6 @@
+---
 # https://clang.llvm.org/docs/ClangFormat.html ,
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html ,
 
 # --fallback-style=<string>
 #   - The name of the predefined style used as a
@@ -22,4 +24,5 @@
 #     4. "{key: value, ...}" to set specific parameters, e.g.:
 #       --style="{BasedOnStyle: llvm, IndentWidth: 8}"
 
-SortIncludes: false
+SortIncludes: Never
+...
