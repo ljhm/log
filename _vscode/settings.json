@@ -13,7 +13,8 @@
     // "C_Cpp.formatting": "clangFormat",
     "C_Cpp.formatting": "none",
     "clangd.arguments": [
-        "--fallback-style=None",
+        // https://clang.llvm.org/docs/ClangFormat.html ,
+        "--fallback-style=none",
         "--header-insertion=never",
     ],
     "clangd.fallbackFlags": [
@@ -34,6 +35,7 @@
     "editor.dragAndDrop": false,
     "editor.folding": false,
     "editor.fontSize": 15,
+    "editor.formatOnSave": true,
     "editor.hover.enabled": false,
     "editor.inlayHints.enabled": "off",
     "editor.lightbulb.enabled": "off",

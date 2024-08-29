@@ -1,0 +1,25 @@
+# https://clang.llvm.org/docs/ClangFormat.html ,
+
+# --fallback-style=<string>
+#   - The name of the predefined style used as a
+#     fallback in case clang-format is invoked with
+#     -style=file, but can not find the .clang-format
+#     file to use. Defaults to 'LLVM'.
+#     Use -fallback-style=none to skip formatting.
+
+# --style=<string>
+#   - Set coding style. <string> can be:
+#     1. A preset: LLVM, GNU, Google, Chromium, Microsoft,
+#       Mozilla, WebKit.
+#     2. 'file' to load style configuration from a
+#       .clang-format file in one of the parent directories
+#       of the source file (for stdin, see --assume-filename).
+#       If no .clang-format file is found, falls back to
+#       --fallback-style.
+#       --style=file is the default.
+#     3. 'file:<format_file_path>' to explicitly specify
+#       the configuration file.
+#     4. "{key: value, ...}" to set specific parameters, e.g.:
+#       --style="{BasedOnStyle: llvm, IndentWidth: 8}"
+
+SortIncludes: false
