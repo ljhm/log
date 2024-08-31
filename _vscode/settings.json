@@ -14,7 +14,7 @@
     "C_Cpp.formatting": "none",
     "clangd.arguments": [
         "--background-index",
-        "--fallback-style=none", // https://clang.llvm.org/docs/ClangFormat.html ,
+        // "--fallback-style=none", // https://clang.llvm.org/docs/ClangFormat.html ,
         "--header-insertion=never",
     ],
     "clangd.fallbackFlags": [
