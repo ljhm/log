@@ -24,5 +24,7 @@
 #     4. "{key: value, ...}" to set specific parameters, e.g.:
 #       --style="{BasedOnStyle: llvm, IndentWidth: 8}"
 
+# Language: Cpp
+# BasedOnStyle: LLVM
 # SortIncludes: Never
 ...
