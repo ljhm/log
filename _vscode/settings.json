@@ -35,7 +35,7 @@
     "editor.dragAndDrop": false,
     "editor.folding": false,
     "editor.fontSize": 15,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true, // formatOnPaste conflicts with SortIncludes
     "editor.hover.enabled": false,
     "editor.inlayHints.enabled": "off",
     "editor.lightbulb.enabled": "off",
