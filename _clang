@@ -1,0 +1,9 @@
+---
+# https://clangd.llvm.org/installation ,
+# https://clangd.llvm.org/config ,
+# https://clangd.llvm.org/faq ,
+
+CompileFlags:
+  Add: [-xc++, -std=c++2a, -Wall, -DGLOG_USE_GLOG_EXPORT, -I../glog/src, -I../glog/src]
+  Compiler: clang++
+...
