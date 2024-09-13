@@ -1,16 +1,15 @@
-// clangd codelldb on macos linux
 {
-    "tasks": [
-        {
-            "type": "shell",
-            "label": "make",
-            "command": "/usr/bin/make",
-            "args": [],
-            "options": {
-                // "cwd": "${workspaceFolder}/src",
-                "cwd": "${fileDirname}",
-            }
-        }
-    ],
-    "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "make",
+      "command": "/usr/bin/make",
+      "args": [],
+      "options": {
+        // "cwd": "${workspaceFolder}/src",
+        "cwd": "${fileDirname}",
+      }
+    }
+  ],
+  "version": "2.0.0",
 }

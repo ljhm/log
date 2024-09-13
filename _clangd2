@@ -4,6 +4,10 @@
 # https://clangd.llvm.org/faq ,
 
 CompileFlags:
-  Add: [-xc++, -std=c++2a, -Wall, -DGLOG_USE_GLOG_EXPORT, -I../glog/src, -I../glog/src]
-  Compiler: clang++
+  Add: [
+    -xc++,
+    -std=c++2a,
+    -Wall,
+    -DGLOG_USE_GLOG_EXPORT,
+    -I/Users/ljh/Downloads/asio-1.30.2/include]
 ...

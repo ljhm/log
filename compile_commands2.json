@@ -16,5 +16,23 @@
     "directory": "/home/user/llvm/build",
     "command": "/usr/bin/clang++ -Irelative -DSOMEDEF=\"With spaces, quotes and \\-es.\" -c -o file.o file.cc",
     "file": "file2.cc"
+  },
+  {
+    "directory": "/Users/ljh/Documents/lijh8.github/Asio/src/main/",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-I/Users/ljh/Downloads/asio-1.30.2/include",
+      "-DSOMEDEF=With spaces, quotes and \\-es.",
+      "-c",
+      "-o",
+      "server.o",
+      "server.cpp"
+    ],
+    "file": "server.cpp"
+  },
+  {
+    "directory": "/Users/ljh/Documents/lijh8.github/Asio/src/main/",
+    "command": "/usr/bin/clang++ -I/Users/ljh/Downloads/asio-1.30.2/include -DSOMEDEF=\"With spaces, quotes and \\-es.\" -c -o client.o client.cpp",
+    "file": "client.cpp"
   }
 ]

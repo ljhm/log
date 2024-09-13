@@ -1,19 +1,18 @@
-// clangd codelldb on macos linux
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Debug",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "env": {
-                "LD_LIBRARY_PATH": "${workspaceFolder}/src/foo:/home/ljh/Downloads/glog/build",
-                "DYLD_LIBRARY_PATH": "${workspaceFolder}/src/foo",
-            },
-            "cwd": "${fileDirname}",
-            "preLaunchTask": "make",
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "env": {
+        "LD_LIBRARY_PATH": "${workspaceFolder}/src/foo",
+        "DYLD_LIBRARY_PATH": "${workspaceFolder}/src/foo",
+      },
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "make",
+    }
+  ]
 }
