@@ -37,6 +37,7 @@
   "editor.copyWithSyntaxHighlighting": false,
   "editor.dragAndDrop": false,
   "editor.folding": false,
+  "editor.fontFamily": "monospace",
   "editor.fontSize": 15,
   "editor.formatOnSave": true, // formatOnPaste conflicts with SortIncludes
   "editor.hover.enabled": false,
@@ -62,6 +63,10 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.sortOrder": "alphabetical",
   "extensions.ignoreRecommendations": true,
+  "files.exclude": {
+    "**/*.d": true,
+    "**/*.o": true,
+  },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
