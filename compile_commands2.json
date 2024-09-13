@@ -4,9 +4,8 @@
     "arguments": [
       "/usr/bin/clang++",
       "-std=c++2a",
-      "-g",
-      "-I/Users/ljh/Downloads/asio-1.30.2/include",
       "-DSOMEDEF=With spaces, quotes and \\-es.",
+      "-I/Users/ljh/Downloads/asio-1.30.2/include",
       "-c",
       "-o",
       "server.o",
@@ -19,9 +18,8 @@
     "arguments": [
       "/usr/bin/clang++",
       "-std=c++2a",
-      "-g",
-      "-I/Users/ljh/Downloads/asio-1.30.2/include",
       "-DSOMEDEF=With spaces, quotes and \\-es.",
+      "-I/Users/ljh/Downloads/asio-1.30.2/include",
       "-c",
       "-o",
       "client.o",

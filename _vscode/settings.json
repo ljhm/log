@@ -19,7 +19,7 @@
     "--header-insertion=never",
   ],
   "clangd.fallbackFlags": [
-    "-std=c++2a",
+    "-std=c++2a", // all should have this: .clangd, compile_commands.json, compile_flags.txt
     "-DGLOG_USE_GLOG_EXPORT",
     "-I../foo",
     "-I${workspaceFolder}/src/foo",
