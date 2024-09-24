@@ -1,3 +1,4 @@
+// clangd codelldb on macos linux
 {
   "tasks": [
     {
@@ -6,8 +7,8 @@
       "command": "/usr/bin/make",
       "args": [],
       "options": {
-        "cwd": "${workspaceFolder}/src",
-        // "cwd": "${fileDirname}",
+        // "cwd": "${workspaceFolder}/src",
+        "cwd": "${fileDirname}",
       }
     }
   ],

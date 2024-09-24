@@ -1,3 +1,4 @@
+// clangd codelldb on macos linux
 {
   "version": "0.2.0",
   "configurations": [
@@ -8,8 +9,8 @@
       "program": "${fileDirname}/${fileBasenameNoExtension}",
       "args": [],
       "env": {
-        "LD_LIBRARY_PATH": "${workspaceFolder}/src/foo",
-        "DYLD_LIBRARY_PATH": "${workspaceFolder}/src/foo",
+        "LD_LIBRARY_PATH": "${workspaceFolder}/src/foo:/home/ljh/Downloads/boost_1_86_0/stage/lib",
+        "DYLD_LIBRARY_PATH": "${workspaceFolder}/src/foo:/home/ljh/Downloads/boost_1_86_0/stage/lib",
       },
       "cwd": "${fileDirname}",
       "preLaunchTask": "make",

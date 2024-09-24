@@ -1,0 +1,7 @@
+2024-09-24 22:06:47.151378 CST [debug  ] main.cpp:11: This is a debug message.
+2024-09-24 22:06:47.151988 CST [info   ] main.cpp:12: This is an info message.
+2024-09-24 22:06:47.152035 CST [warning] main.cpp:13: This is a warning message.
+2024-09-24 22:06:47.152071 CST [error  ] main.cpp:14: This is an error message.
+2024-09-24 22:06:47.152105 CST [fatal  ] main.cpp:15: This is a fatal message.
+2024-09-24 22:06:47.152139 CST [trace  ] main.cpp:10: This is a trace message.
+2024-09-24 22:06:47.152173 CST [debug  ] main.cpp:11: This is a debug message.

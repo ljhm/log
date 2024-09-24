@@ -101,3 +101,10 @@ glog.fedora.ljh.log.WARNING.20240828-163955.18007
 glog.fedora.ljh.log.ERROR.20240828-163942.18007
 
 */
+
+#include <glog/logging.h>
+
+int f() {
+  // std::cout << "test\n";
+  return 0;
+}
