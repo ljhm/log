@@ -53,7 +53,7 @@ $
 std::string timezone2() {
   char str[50];
   struct tm result;
-  auto clock = std::time(nullptr);
+  auto clock = time(nullptr);
   auto timeptr = localtime_r(&clock, &result);
   strftime(str, sizeof(str), "%Z", timeptr);
   return str;
