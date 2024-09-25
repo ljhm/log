@@ -4,7 +4,7 @@
 int main() {
   const std::string log_dir = "logs"; // get executable directory
   const std::string name = "foo";
-  initLogging(log_dir, name);
+  init_logging(log_dir, name);
 
   for (;;) { // test rotation
     LOG(trace) << "This is a trace message.";

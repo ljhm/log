@@ -52,13 +52,14 @@ $
 
 std::string timezone2() {
   char str[50];
-  std::time_t tm = std::time(nullptr);
-  std::tm local = *std::localtime(&tm);
-  strftime(str, sizeof(str), "%Z", &local);
+  struct tm result;
+  auto clock = std::time(nullptr);
+  auto timeptr = localtime_r(&clock, &result);
+  strftime(str, sizeof(str), "%Z", timeptr);
   return str;
 }
 
-void initLogging(const std::string &log_dir, const std::string &name) {
+void init_logging(const std::string &log_dir, const std::string &name) {
   const std::string pattern =
       std::string("_%Y%m%d_%H%M%S.%f_") + timezone2() + ".log";
   const size_t rotation_size = 1024 * 1024 * 1;
