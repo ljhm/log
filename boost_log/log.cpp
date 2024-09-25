@@ -74,7 +74,7 @@ void init_logging(const std::string &log_dir, const std::string &name) {
                 << std::left << std::setw(severity_len) << std::setfill(' ')
                 << logging::trivial::severity << "] " << expr::smessage;
 
-  auto fileSink = logging::add_file_log(
+  auto file_sink = logging::add_file_log(
       keywords::file_name = log_dir + "/" + name + pattern,
       keywords::target_file_name = name + pattern,
       keywords::rotation_size = rotation_size, // in characters
@@ -85,7 +85,7 @@ void init_logging(const std::string &log_dir, const std::string &name) {
       keywords::filter = logging::trivial::severity >= logging::trivial::trace,
       keywords::format = format);
 
-  auto consoleSink = logging::add_console_log(
+  auto console_sink = logging::add_console_log(
       std::clog,
       keywords::filter = logging::trivial::severity >= logging::trivial::trace,
       keywords::format = format);
