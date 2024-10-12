@@ -1,4 +1,3 @@
-// clangd codelldb on macos linux
 {
   "tasks": [
     {
@@ -9,7 +8,10 @@
       "options": {
         // "cwd": "${workspaceFolder}/src",
         "cwd": "${fileDirname}",
-      }
+      },
+      "presentation": {
+        "clear": true
+      },
     }
   ],
   "version": "2.0.0",

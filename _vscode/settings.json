@@ -1,5 +1,5 @@
 {
-  "accessibility.verbosity.diffEditor": false, //
+  "accessibility.verbosity.diffEditor": false,
   "breadcrumbs.enabled": false,
   "breadcrumbs.icons": false,
   "C_Cpp.autoAddFileAssociations": false,
@@ -20,20 +20,17 @@
     "--header-insertion=never",
   ],
   "clangd.fallbackFlags": [
-    "-std=c++23", // all should have this: .clangd, compile_commands.json, compile_flags.txt
+    "-std=c++2a", // all should have this: .clangd, compile_commands.json, compile_flags.txt
+    "-DGLOG_USE_GLOG_EXPORT",
     "-I../foo",
     "-I${workspaceFolder}/src/foo",
-    "-DGLOG_USE_GLOG_EXPORT",
     "-I/Users/ljh/Downloads/boost_1_86_0/",
     "-I/Users/ljh/Downloads/asio-1.30.2/include",
     "-I/home/ljh/Downloads/glog/src",
     "-I/home/ljh/Downloads/glog/build",
-    "-I/home/ljh/Downloads/boost_1_86_0",
   ],
   "clangd.semanticHighlighting": false,
-  "debug.internalConsoleOptions": "neverOpen",
-  "debug.onTaskErrors": "showErrors",
-  "debug.showBreakpointsInOverviewRuler": true,
+  "debug.terminal.clearBeforeReusing": true,
   "diffEditor.maxComputationTime": 0,
   "diffEditor.renderGutterMenu": false,
   "diffEditor.renderIndicators": false,
@@ -74,6 +71,7 @@
     "**/*.o": true,
   },
   "files.insertFinalNewline": true,
+  "files.restoreUndoStack": false,
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
@@ -92,12 +90,11 @@
   "lldb.evaluateForHovers": false,
   "outline.icons": false,
   "[python]": {
-    "editor.formatOnType": false
+    "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "python.analysis.inlayHints.functionReturnTypes": false,
   "python.analysis.inlayHints.pytestParameters": false,
   "python.analysis.inlayHints.variableTypes": false,
-  "python.formatting.provider": "none",
   "rust-analyzer.completion.autoimport.enable": false,
   "rust-analyzer.completion.autoself.enable": false,
   "rust-analyzer.completion.callable.snippets": "none",
