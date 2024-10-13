@@ -30,6 +30,8 @@
     "-I/home/ljh/Downloads/glog/build",
   ],
   "clangd.semanticHighlighting": false,
+  "debug.internalConsoleOptions": "neverOpen",
+  "debug.showBreakpointsInOverviewRuler": true,
   "debug.terminal.clearBeforeReusing": true,
   "diffEditor.maxComputationTime": 0,
   "diffEditor.renderGutterMenu": false,
