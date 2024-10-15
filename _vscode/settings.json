@@ -31,6 +31,7 @@
   ],
   "clangd.semanticHighlighting": false,
   "debug.internalConsoleOptions": "neverOpen",
+  "debug.onTaskErrors": "showErrors",
   "debug.showBreakpointsInOverviewRuler": true,
   "debug.terminal.clearBeforeReusing": true,
   "diffEditor.maxComputationTime": 0,
@@ -81,7 +82,7 @@
   "git.openRepositoryInParentFolders": "never",
   "go.enableCodeLens": {
     "references": false,
-    "runtest": false
+    "runtest": false,
   },
   "go.testExplorer.enable": false,
   "go.toolsEnvVars": {
@@ -92,7 +93,7 @@
   "lldb.evaluateForHovers": false,
   "outline.icons": false,
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "ms-python.autopep8",
   },
   "python.analysis.inlayHints.functionReturnTypes": false,
   "python.analysis.inlayHints.pytestParameters": false,
