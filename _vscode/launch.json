@@ -13,6 +13,7 @@
       },
       "cwd": "${fileDirname}",
       "preLaunchTask": "make",
+      "console": "integratedTerminal",
     }
   ]
 }
