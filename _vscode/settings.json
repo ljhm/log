@@ -33,7 +33,7 @@
   "clangd.semanticHighlighting": false,
   "debug.console.fontFamily": "Helvetica, Arial, 'Liberation Sans', sans-serif",
   "debug.internalConsoleOptions": "neverOpen",
-  "debug.onTaskErrors": "showErrors",
+  "debug.onTaskErrors": "abort",
   "debug.showBreakpointsInOverviewRuler": true,
   "debug.terminal.clearBeforeReusing": true,
   "diffEditor.maxComputationTime": 0,
