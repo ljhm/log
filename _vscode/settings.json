@@ -31,7 +31,6 @@
     "-I/Users/ljh/Downloads/utfcpp-4.0.5/source",
   ],
   "clangd.semanticHighlighting": false,
-  "debug.console.fontFamily": "Helvetica, Arial, 'Liberation Sans', sans-serif",
   "debug.internalConsoleOptions": "neverOpen",
   "debug.onTaskErrors": "abort",
   "debug.showBreakpointsInOverviewRuler": true,
@@ -45,7 +44,6 @@
   "editor.copyWithSyntaxHighlighting": false,
   "editor.dragAndDrop": false,
   "editor.folding": false,
-  "editor.fontFamily": "Helvetica, Arial, 'Liberation Sans', sans-serif",
   "editor.fontSize": 14,
   "editor.formatOnSave": true, // formatOnPaste conflicts with SortIncludes
   "editor.hover.enabled": false,
@@ -115,7 +113,6 @@
   "rust-analyzer.inlayHints.typeHints.enable": false,
   "rust-analyzer.lens.enable": false,
   "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.persistentSessionReviveProcess": "never",
   "terminal.integrated.shellIntegration.decorationsEnabled": "never",
   "vim.hlsearch": true,
